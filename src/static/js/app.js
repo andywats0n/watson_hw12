@@ -52,5 +52,30 @@ function optionChanged(newSample) {
   buildMetadata(newSample);
 }
 
+let themes = document.querySelectorAll('.dropdown-item')
+themes.forEach(t => t.addEventListener('click', toggleTheme))
+
+// dark theme
+function toggleTheme(e) {
+  let text = e.target.innerText;
+  if (text.toLowerCase() === 'light') {
+    d3.select('body').style('background-color', '#fff');
+    d3.select('body').style('color', 'black')
+    d3.select('.jumbotron').style('background-color', '#e9ecef');
+    d3.selectAll('.card').style('background-color', 'white');
+    d3.selectAll('option').style('background-color', 'white');
+    let toggleText = document.querySelector('.dropdown-toggle')
+    toggleText.innerText = `${text}  `;
+  } else {
+    d3.select('body').style('background-color', '#3e3e3e');
+    d3.select('body').style('color', 'white')
+    d3.select('.jumbotron').style('background-color', '#2e2e2e');
+    d3.selectAll('.card').style('background-color', '#2e2e2e');
+    d3.selectAll('option').style('background-color', '#2e2e2e');
+    let toggleText = document.querySelector('.dropdown-toggle')
+    toggleText.innerText = `${text}   `;
+  }
+}
+
 // Initialize the dashboard
 init();
